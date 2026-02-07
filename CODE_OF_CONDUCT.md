@@ -1,76 +1,43 @@
-# Contributor Covenant Code of Conduct
+# AcreetionOS 
 
-## Our Pledge
+## Our Community Ethos
 
-In the interest of fostering an open and welcoming environment, we as
-contributors and maintainers pledge to making participation in our project and
-our community a harassment-free experience for everyone, regardless of age, body
-size, disability, ethnicity, sex characteristics, gender identity and expression,
-level of experience, education, socio-economic status, nationality, personal
-appearance, race, religion, or sexual identity and orientation.
+### The Pledge
+We provide an open, "no-nonsense" environment built on individual respect. In this community, stereotypes are just labels with no meaning. We don’t care about your background or what boxes society tries to put you in; we care about your character and your drive to contribute. 
 
-## Our Standards
+### A Community for Newcomers
+This is a space specifically designed for those "new to the community." We embrace the power of Arch Linux, but we strip away the elitism. 
 
-Examples of behavior that contributes to creating a positive environment
-include:
+* **No "RTFM":** We will never tell you to "Read The Fucking Manual." We are here to help.
+* **AI-Assisted Learning:** We openly use and encourage AI assistance to teach people how to master the system.
+* **Not a Dev? No Problem:** If you want to contribute, we will teach you the skills you need.
 
-* Using welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy towards other community members
+### Our Standards
+1. **Zero Stereotypes:** We treat people as individuals. Labels have no power here.
+2. **Mutual Respect:** You are welcome to express who you are, provided you are respectful of the community.
+3. **No Bullshit:** We stay focused on the project. Drama and ideological gatekeeping are not tolerated.
+4. **The Respect Boundary:** You don't have to like or agree with our personal philosophies. However, if you remain respectful, we will get along just fine. Respect is the only currency required here.
 
-Examples of unacceptable behavior by participants include:
+---
 
-* The use of sexualized language or imagery and unwelcome sexual attention or
- advances
-* Trolling, insulting/derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or electronic
- address, without explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
- professional setting
+## Leadership & Stability
 
-## Our Responsibilities
+### Natalie Spiva – Project Lead
+I am Natalie Spiva. I am a trans girl and a Republican. I love who I am, and I don't change who I am for anyone. I built AcreetionOS to reflect that authenticity. 
 
-Project maintainers are responsible for clarifying the standards of acceptable
-behavior and are expected to take appropriate and fair corrective action in
-response to any instances of unacceptable behavior.
+For me, being a Republican and a trans girl overlaps through the value of **individual liberty**. I believe in self-ownership and the freedom to define my own life without government or social interference. Economically, I believe that **lower costs and free-market competition mean more access for trans girls** to affordable healthcare and the resources they need to live authentically.
 
-Project maintainers have the right and responsibility to remove, edit, or
-reject comments, commits, code, wiki edits, issues, and other contributions
-that are not aligned to this Code of Conduct, or to ban temporarily or
-permanently any contributor for other behaviors that they deem inappropriate,
-threatening, offensive, or harmful.
+### Darren Clift – Stability Oversight
+Stability is our foundation. My father, Darren Clift, works alongside me to ensure the project remains solid, reliable, and secure. His oversight ensures that while we are always pushing boundaries, the system remains a stable environment for everyone.
 
-## Scope
+---
 
-This Code of Conduct applies both within project spaces and in public spaces
-when an individual is representing the project or its community. Examples of
-representing a project or community include using an official project e-mail
-address, posting via an official social media account, or acting as an appointed
-representative at an online or offline event. Representation of a project may be
-further defined and clarified by project maintainers.
+## Agreement & License
+By continuing to use this software or participate in this community, you acknowledge that you are accepting the License Agreement and the terms laid out in this document.
 
-## Enforcement
+**Repository:** [AcreetionOS Agreement](https://github.com.acreetionos-linux/acreetionos.git)
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the project team at **oss@jessesquires.com**. All
-complaints will be reviewed and investigated and will result in a response that
-is deemed necessary and appropriate to the circumstances. The project team is
-obligated to maintain confidentiality with regard to the reporter of an incident.
-Further details of specific enforcement policies may be posted separately.
+**Make Linux Great Again.**
 
-Project maintainers who do not follow or enforce the Code of Conduct in good
-faith may face temporary or permanent repercussions as determined by other
-members of the project's leadership.
-
-## Attribution
-
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
-available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
-
-[homepage]: https://www.contributor-covenant.org
-
-For answers to common questions about this code of conduct, see
-https://www.contributor-covenant.org/faq
+---
+*This document is adapted from the Contributor Covenant 1.4, modified to reflect the unique, individual-focused culture of AcreetionOS.*
