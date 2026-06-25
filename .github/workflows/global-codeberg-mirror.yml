@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: List ALL repos and mirror to Codeberg
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
           CODEBERG_TOKEN: ${{ secrets.CODEBERG_TOKEN }}
         run: |
           # Get ALL repos (public only, includes future repos automatically)
