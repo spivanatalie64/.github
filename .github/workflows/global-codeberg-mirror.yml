@@ -1,0 +1,84 @@
+name: 🌐 Global Codeberg UltraMirror
+
+on:
+  # Run every 6 hours to catch anything new
+  schedule:
+    - cron: '0 */6 * * *'
+  # Trigger manually
+  workflow_dispatch:
+  # Triggered when any repo in the org pushes
+  repository_dispatch:
+    types: [mirror-all]
+
+jobs:
+  mirror-all:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: List ALL repos and mirror to Codeberg
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CODEBERG_TOKEN: ${{ secrets.CODEBERG_TOKEN }}
+        run: |
+          # Get ALL repos (public only, includes future repos automatically)
+          echo "📡 Scanning all repos..."
+          REPOS=$(gh repo list spivanatalie64 --limit 200 --json name --jq '.[].name' --public 2>/dev/null || echo "")
+          
+          for REPO in $REPOS; do
+            echo ""
+            echo "═══ Processing: $REPO ═══"
+            
+            # Create ultra-compressed mirror
+            MIRROR_DIR="/tmp/um-$REPO"
+            rm -rf "$MIRROR_DIR"
+            mkdir -p "$MIRROR_DIR"
+            
+            # Generate the 3 files
+            cat > "$MIRROR_DIR/setup.sh" << 'EOF'
+#!/bin/sh
+echo "🌐 REPO — Codeberg UltraMirror
+   Full source: https://github.com/spivanatalie64/REPO"
+git clone --depth=1 https://github.com/spivanatalie64/REPO.git . 2>/dev/null
+EOF
+            sed -i "s/REPO/$REPO/g" "$MIRROR_DIR/setup.sh"
+            chmod +x "$MIRROR_DIR/setup.sh"
+            
+            echo "# $REPO — Codeberg UltraMirror" > "$MIRROR_DIR/README.md"
+            echo "" >> "$MIRROR_DIR/README.md"
+            echo "Canonical source: https://github.com/spivanatalie64/$REPO" >> "$MIRROR_DIR/README.md"
+            
+            echo "all: fetch" > "$MIRROR_DIR/Makefile"
+            echo "fetch:" >> "$MIRROR_DIR/Makefile"
+            echo -e "\tgit clone --depth=1 https://github.com/spivanatalie64/$REPO.git ." >> "$MIRROR_DIR/Makefile"
+            
+            # Git init and push
+            cd "$MIRROR_DIR"
+            git init -b main 2>/dev/null
+            git config user.email "natalie@acreetionos.org"
+            git config user.name "Natalie Spiva"
+            git add -A && git commit -m "$REPO — Codeberg UltraMirror (infinite compression)" --quiet 2>/dev/null
+            
+            # Push to Codeberg
+            git remote add codeberg "https://sprunglesontheberg:${CODEBERG_TOKEN}@codeberg.org/sprunglesontheberg/$REPO.git" 2>/dev/null
+            PUSH_RESULT=$(git push codeberg main --force 2>&1)
+            
+            if echo "$PUSH_RESULT" | grep -q "main -> main"; then
+              echo "  ✅ $REPO mirrored (~$(du -sh . | cut -f1))"
+            elif echo "$PUSH_RESULT" | grep -q "Everything up-to-date"; then
+              echo "  ⏭️  $REPO already up to date"
+            else
+              echo "  ⚠️  $REPO: creating new Codeberg repo..."
+              # Create repo on Codeberg first, then push
+              curl -s -u "sprunglesontheberg:${CODEBERG_TOKEN}" \
+                -X POST "https://codeberg.org/api/v1/user/repos" \
+                -H "Content-Type: application/json" \
+                -d "{\"name\": \"$REPO\", \"private\": false}" > /dev/null 2>&1
+              git push codeberg main --force 2>&1 | tail -1
+            fi
+            
+            cd /tmp
+            rm -rf "$MIRROR_DIR"
+          done
+          
+          echo ""
+          echo "🎉 Global Codeberg UltraMirror complete!"
