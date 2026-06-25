@@ -1,0 +1,32 @@
+name: Reusable Guile CI
+
+on:
+  workflow_call:
+    inputs:
+      module-name:
+        required: true
+        type: string
+      test-command:
+        required: false
+        type: string
+        default: ''
+      cli-command:
+        required: false
+        type: string
+        default: ''
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Guile
+        run: sudo apt-get update && sudo apt-get install -y guile-3.0
+      - name: Verify module loads
+        run: guile -L . -L modules -c "(use-modules (${{ inputs.module-name }}))"
+      - name: Test CLI
+        if: inputs.cli-command != ''
+        run: ${{ inputs.cli-command }}
+      - name: Run custom tests
+        if: inputs.test-command != ''
+        run: ${{ inputs.test-command }}

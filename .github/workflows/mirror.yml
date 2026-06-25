@@ -1,0 +1,41 @@
+name: Reusable Mirror
+
+on:
+  workflow_call:
+    secrets:
+      GITLAB_TOKEN:
+        required: true
+      CODEBERG_TOKEN:
+        required: true
+    inputs:
+      repo-name:
+        required: true
+        type: string
+      gitlab-namespace:
+        required: false
+        type: string
+        default: 'natalie'
+      codeberg-owner:
+        required: false
+        type: string
+        default: 'sprunglesontheberg'
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Mirror to GitLab
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+        run: |
+          git remote add gitlab https://oauth2:${GITLAB_TOKEN}@gitlab.acreetionos.org/${{ inputs.gitlab-namespace }}/${{ inputs.repo-name }}.git 2>/dev/null || true
+          git push --mirror gitlab 2>&1 || echo "GitLab mirror skipped (repo may not exist there)"
+      - name: Mirror to Codeberg
+        env:
+          CODEBERG_TOKEN: ${{ secrets.CODEBERG_TOKEN }}
+        run: |
+          git remote add codeberg https://sprunglesontheberg:${CODEBERG_TOKEN}@codeberg.org/${{ inputs.codeberg-owner }}/${{ inputs.repo-name }}.git 2>/dev/null || true
+          git push --mirror codeberg 2>&1 || echo "Codeberg mirror skipped (repo may not exist there)"
