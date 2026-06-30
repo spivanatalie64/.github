@@ -1,4 +1,4 @@
-# 👋 Welcome to AcreetionOS!
+# 👋 Hi! I am Natalie! My Father and I Build AcreetionOS!
 
 We build free software for everyone. Our projects span from operating systems
 to developer tools, all built with love and a commitment to software freedom.
